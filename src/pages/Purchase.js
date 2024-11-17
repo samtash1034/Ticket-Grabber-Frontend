@@ -21,11 +21,13 @@ import PlaceIcon from "@mui/icons-material/Place";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import axios from "axios";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const events = [
   {
     id: 1,
-    title: "庫拉皮卡演唱會",
-    description: "這是庫拉皮卡演唱會 的詳細信息。",
+    title: "庫拉皮卡丘演唱會",
+    description: "這是庫拉皮卡丘演唱會 的詳細信息。",
     image: "/images/seat/concert1_seat.png",
     date: "2025-05-20",
     venue: "新北大巨蛋",
@@ -83,7 +85,7 @@ function Purchase() {
 
   const fetchRemainingSeats = () => {
     axios
-      .get(`http://localhost:8080/api/ticket/seat`, {
+      .get(`${API_BASE_URL}/ticket/seat`, {
         params: { concertId: event.id, seatArea: selectedArea },
       })
       .then((response) => {
@@ -114,7 +116,7 @@ function Purchase() {
     };
 
     axios
-      .post("http://localhost:8080/api/ticket/grab", payload)
+      .post(`${API_BASE_URL}/ticket/grab`, payload)
       .then((response) => {
         const { data } = response;
         if (data.status === "success" && data.result.orderId) {
@@ -154,7 +156,7 @@ function Purchase() {
 
     const poll = () => {
       axios
-        .get(`http://localhost:8080/api/order/${orderId}`)
+        .get(`${API_BASE_URL}/order/${orderId}`)
         .then((response) => {
           const { data } = response;
           if (data.status === "success" && data.code === 20000) {

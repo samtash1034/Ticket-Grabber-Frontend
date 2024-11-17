@@ -1,71 +1,75 @@
-# Getting Started with Create React App
+# 搶票系統前端專案
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 使用說明
 
-## Available Scripts
+本專案主要聚焦於搶票功能，登入及用戶中心頁面僅作為展示，無法使用。
 
-In the project directory, you can run:
+## 系統需求
 
-### `npm start`
+- Node.js 版本 18 以上
+- 使用 npm 安裝依賴並啟動專案：
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  ```bash
+  npm install
+  npm start
+  ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- .env 檔案配置：
 
-### `npm test`
+  ```env
+  REACT_APP_API_BASE_URL=http://localhost:8080/api
+  ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  請將上述路徑替換成後端 Gateway 的實際路徑。
 
-### `npm run build`
+### 進入購票頁面
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. 打開瀏覽器，輸入 [http://localhost:3000](http://localhost:3000) 進入首頁。
+2. 點選「庫拉皮卡丘演唱會」的「立即購票」按鈕，進入購票頁面。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 購票流程
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. 進入購票頁面後，選擇區域及票數。
+2. 此時**先不要**按下「確認購票」。
 
-### `npm run eject`
+### 壓力測試
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. 打開瀏覽器的開發者工具（按下 `F12`），觀察請求。
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. 打開壓力測試工具 **k6**，並執行腳本：
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   k6 run script.js
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   > **注意**：在使用 k6 之前，請先將專案 clone 下來：[https://github.com/samtash1034/Ticket-Graber-K6.git](https://github.com/samtash1034/Ticket-Graber-K6.git)
 
-## Learn More
+3. 執行腳本後，立即在購票頁面按下「確認購票」。
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 訂單處理
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. 若搶票成功，系統將進入訂單處理階段。此時前端每五秒鐘會向訂單 API 發送請求，以檢查訂單是否建立成功。
+2. 一旦訂單建立成功，系統將自動跳轉到訂單頁面。
+3. 訂單處理完成後，進入訂單頁面。**座位一定是連號的，確保使用者可以坐在一起。**
 
-### Code Splitting
+## 截圖展示
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 首頁
 
-### Analyzing the Bundle Size
+![首頁](assets/images/homepage.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 購票頁面
 
-### Making a Progressive Web App
+![購票頁面](assets/images/purchase.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 壓力測試中
 
-### Advanced Configuration
+![壓力測試中](assets/images/purchase-k6.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 訂單等待中
 
-### Deployment
+![訂單等待中](assets/images/order-waiting.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 訂單成功
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Ticket-Graber-Frontend
+![訂單成功](assets/images/order-success.png)

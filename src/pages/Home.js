@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-// 假設有一個活動數據列表
 const events = [
   {
     id: 1,
@@ -27,7 +26,6 @@ const events = [
     salesStart: "2099-01-01",
     salesEnd: "2099-12-31",
   },
-  // 更多活動...
 ];
 
 function Home() {

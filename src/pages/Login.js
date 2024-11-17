@@ -9,8 +9,6 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    // 在此處處理登入邏輯，如調用後端 API
-    // 假設登入成功後導航到首頁
     alert("登入成功！");
     navigate("/");
   };

@@ -1,8 +1,6 @@
-// src/pages/UserCenter.js
 import React from "react";
 import { Container, Typography, Card, CardContent, Grid } from "@mui/material";
 
-// 假設有一個用戶購票數據
 const userTickets = [
   {
     eventId: 1,
@@ -16,7 +14,6 @@ const userTickets = [
     quantity: 1,
     purchaseDate: "2024-11-05",
   },
-  // 更多票務...
 ];
 
 function UserCenter() {

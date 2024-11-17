@@ -1,4 +1,3 @@
-// src/pages/EventDetail.js
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import {
@@ -10,7 +9,6 @@ import {
   CardContent,
 } from "@mui/material";
 
-// 假設有一個活動數據列表
 const events = [
   {
     id: 1,
@@ -28,7 +26,6 @@ const events = [
     date: "2024-12-15",
     venue: "音樂廳",
   },
-  // 更多活動...
 ];
 
 function EventDetail() {

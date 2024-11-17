@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import axios from "axios";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 function Order() {
   const { orderId } = useParams();
   const [order, setOrder] = useState(null);
@@ -25,12 +27,11 @@ function Order() {
 
   useEffect(() => {
     fetchOrderDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId]);
 
   const fetchOrderDetails = () => {
     axios
-      .get(`http://localhost:8080/api/order/${orderId}`)
+      .get(`${API_BASE_URL}/order/${orderId}`)
       .then((response) => {
         const { data } = response;
         if (data.status === "success" && data.code === 20000) {
@@ -61,7 +62,6 @@ function Order() {
   };
 
   const handlePayment = () => {
-    // 實現付款邏輯，例如跳轉到支付頁面或調用支付 API
     setSnackbar({
       open: true,
       message: "付款功能尚未實現。",
